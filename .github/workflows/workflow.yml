@@ -1,0 +1,33 @@
+name: exercise
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code 
+        uses: actions/checkout@v6
+      - name: intstsall dependencies
+        run: npm ci
+      - name: lint code
+        run: npm run lint
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: get code
+        uses: actions/checkout@v6
+      - name: isntall dependencies
+        run: npm ci
+      - name: tests
+        run: npm run test
+  deploy: 
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: get code
+        uses: actions/checkout@v6
+      - name: install dependennd
+        run: npm ci
+      - name: deploy
+        run: echo "deploy"
