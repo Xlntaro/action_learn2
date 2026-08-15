@@ -1,0 +1,11 @@
+name: output
+on: 
+  issues:
+    types:
+      - opened
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get info 
+        run: echo "${{ toJSON(gihub) }}"
